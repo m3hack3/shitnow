@@ -1,5 +1,4 @@
-shitnow
-=======
+今、席にいます - m3ハッカソン チーム3 
 
 ## macでibeacon発行
 
@@ -29,3 +28,10 @@ Bleacon.startAdvertising(uuid, major, minor, measuredPower);
 ```
 $ node beacon.js
 ```
+
+発信完了！
+
+手っ取り早く信号を確認するなら、以下のアプリをiphoneにインストールして、上記uuidを設定すればok
+
+https://itunes.apple.com/jp/app/bluetus-for-ibeacon-ranging/id734155067?mt=8
+
