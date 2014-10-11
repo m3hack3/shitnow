@@ -1,6 +1,6 @@
 今、席にいます - m3ハッカソン チーム3 
 
-## macでibeacon発行
+## macでibeacon発信
 
 node.jsとnpmインストール済みであること
 
