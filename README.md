@@ -1,6 +1,19 @@
 今、席にいます - m3ハッカソン チーム3 
 
-## macでibeacon発信
+## 案1. macをibeacon受信側にする（iphoneは発信側）
+
+```
+iphoneのアプリ（estimote)がibeacon発信
+=> mac(node.js,hubot）が受信
+=> skypeとかに通知
+```
+
+[プロトタイプ](./myhubot)作りました
+
+
+
+
+## 案2. macをibeacon発信側にする（iphoneは受信側）
 
 node.jsとnpmインストール済みであること
 
