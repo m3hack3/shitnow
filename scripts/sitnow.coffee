@@ -1,4 +1,5 @@
 SuperAgent = require "superagent"
+_ = require "underscore"
 
 module.exports = (robot) ->
   robot.respond /hoge$/i, (msg) ->
