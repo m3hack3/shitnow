@@ -7,7 +7,6 @@ module.exports = (robot) ->
 
   robot.respond /where (.+)$/i, (msg) ->
     user_name = msg.match[1]
-    msg.send "seeking #{user_name} location..."
 
     url = process.env.M3_HACK3_SIT_BACK_URL
 
