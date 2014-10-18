@@ -1,9 +1,10 @@
 SuperAgent = require "superagent"
 _ = require "underscore"
+_s = require "underscore.string"
 
 module.exports = (robot) ->
   robot.respond /hoge$/i, (msg) ->
-    msg.send "fuge"
+    msg.send "Fuge".toLowerCase()
 
   robot.respond /where (.+)$/i, (msg) ->
     user_name = msg.match[1]
@@ -20,9 +21,9 @@ module.exports = (robot) ->
 
 class User
   constructor: (options) -> 
-    @name = options.user_name
-    @location = options.location_name
-    @distance = options.distance
+    @name = options.user_name.toLowerCase()
+    @location = options.location.toLowerCase()
+    @distance = options.distance.toLowerCase()
 
   image: ->
     return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@distance}.png"
