@@ -26,5 +26,4 @@ class User
     @distance = options.distance.toLowerCase()
 
   image: ->
-    return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@distance}.png"
-    
+    return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@location}_#{@distance}.png"
