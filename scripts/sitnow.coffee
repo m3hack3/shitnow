@@ -4,8 +4,21 @@ _s = require "underscore.string"
 uuid = require('node-uuid');
 
 module.exports = (robot) ->
-  robot.respond /hoge$/i, (msg) ->
+  robot.respond /$/i, (msg) ->
     msg.send "Fuge".toLowerCase()
+
+  robot.respond /history (.+)$/i, (msg) ->
+    user_name = msg.match[1]
+    url = "#{process.env.M3_HACK3_SIT_BACK_URL}/statuses/histories?user_name=#{user_name}"
+
+    SuperAgent
+      .get(url)
+      .end (res) -> 
+        if res.ok
+          # histories = JSON.parse(res.text)
+          msg.send res.text
+        else
+          msg.send 'sorry...error'
 
   robot.respond /where (.+)$/i, (msg) ->
     user_name = msg.match[1]
@@ -29,4 +42,7 @@ class User
   image: ->
     random_value = uuid.v4()
 
-    return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@location}_#{@distance}.png?v=#{random_value}"
+    if @distance == 'out'
+      return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_out.png?v=#{random_value}"
+    else
+      return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@location}_#{@distance}.png?v=#{random_value}"
