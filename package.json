@@ -26,7 +26,8 @@
     "hubot-slack": "~2.2.0",
     "superagent": "0.20.0",
     "underscore": "1.7.0",
-    "underscore.string": "2.3.3"
+    "underscore.string": "2.3.3",
+    "node-uuid": "1.4.1"
   },
   "engines": {
     "node": ">= 0.8.x",

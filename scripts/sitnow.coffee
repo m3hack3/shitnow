@@ -1,6 +1,7 @@
 SuperAgent = require "superagent"
 _ = require "underscore"
 _s = require "underscore.string"
+uuid = require('node-uuid');
 
 module.exports = (robot) ->
   robot.respond /hoge$/i, (msg) ->
@@ -26,4 +27,6 @@ class User
     @distance = options.distance.toLowerCase()
 
   image: ->
-    return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@location}_#{@distance}.png"
+    random_value = uuid.v4()
+
+    return "#{process.env.M3_HACK3_IMAGE_URL}/#{@name}_#{@location}_#{@distance}.png?v=#{random_value}"
