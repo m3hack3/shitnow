@@ -15,10 +15,8 @@ module.exports = (robot) ->
       .get(url)
       .end (res) -> 
         if res.ok
-          histories = JSON.parse(res.text)
-          users = _.map(histories, (history) -> (new User history))
-          message = _.reduce(users, ((memo, user) -> (memo += "#{user.description()}\n")), '')
-          msg.send message
+          history = new History JSON.parse(res.text)
+          msg.send history.message()
         else
           msg.send 'sorry...error'
 
@@ -35,11 +33,21 @@ module.exports = (robot) ->
         else
           msg.send 'sorry...error'
 
+class History
+  constructor: (user_datas) -> 
+    @users = _.map(user_datas, (user_data) -> (new User user_data))
+
+  message: ->
+    return _.reduce(@users, ((memo, user) -> (memo += "#{user.description()}\n")), '')
+
 class User
   constructor: (options) -> 
-    @name = options.user_name.toLowerCase()
-    @location = options.location.toLowerCase()
-    @distance = options.distance.toLowerCase()
+    if options.user_name?
+      @name = options.user_name.toLowerCase() 
+    if options.location?
+      @location = options.location.toLowerCase()
+    if options.distance?
+      @distance = options.distance.toLowerCase()
 
   image: ->
     random_value = uuid.v4()
@@ -58,7 +66,7 @@ class User
   location_human_readable: ->
     res = switch @location
       when "desk" then "席"
-      when "toilet" then "トイレ"
+      when "toilet" then ":shit:"
       else "不明"
 
     return res
