@@ -4,8 +4,8 @@ _s = require "underscore.string"
 uuid = require('node-uuid');
 
 module.exports = (robot) ->
-  robot.respond /$/i, (msg) ->
-    msg.send "Fuge".toLowerCase()
+  robot.respond /realtime$/i, (msg) ->
+    msg.send "#{process.env.M3_HACK3_SIT_BACK_URL}/status"
 
   robot.respond /history (.+)$/i, (msg) ->
     user_name = msg.match[1]
@@ -15,8 +15,11 @@ module.exports = (robot) ->
       .get(url)
       .end (res) -> 
         if res.ok
-          # histories = JSON.parse(res.text)
-          msg.send res.text
+          histories = JSON.parse(res.text)
+          users = _.map(histories, (history) -> 
+            new User history
+          )
+          _.each(users, (user) -> msg.send user.distance)
         else
           msg.send 'sorry...error'
 
